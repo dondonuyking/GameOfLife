@@ -20,4 +20,9 @@ public class GameOfLifeTest {
         GameOfLife gameOfLife = new GameOfLife(3);
         assertEquals(9,gameOfLife.getNumberOfCells());
     }
+    @Test
+    public void testNewGameWithFourByFourMapReturnsAllCellStatus() {
+        GameOfLife gameOfLife = new GameOfLife(4);
+        assertEquals("0000000000000000",gameOfLife.getAllCellStatus());
+    }
 }

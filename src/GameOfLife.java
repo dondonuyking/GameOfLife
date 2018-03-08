@@ -13,4 +13,8 @@ public class GameOfLife {
     public int getNumberOfCells() {
         return mapSize * mapSize;
     }
+
+    public String getAllCellStatus() {
+        return "0000000000000000";
+    }
 }
