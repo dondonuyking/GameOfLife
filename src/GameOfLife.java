@@ -1,8 +1,16 @@
 public class GameOfLife {
 
+    private static int mapSize;
 
-    public static String getWorld () {
-        return "1x1";
+    public GameOfLife(int i) {
+        mapSize = i;
     }
 
+    public String getWorld () {
+        return String.valueOf(mapSize).concat("x").concat(String.valueOf(mapSize));
+    }
+
+    public int getNumberOfCells() {
+        return mapSize * mapSize;
+    }
 }
