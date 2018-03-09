@@ -1,4 +1,3 @@
-import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -29,5 +28,25 @@ public class GameOfLifeTest {
     public void testNewGameWithTwoByTwoMapReturnsAllCellStatus() {
         GameOfLife gameOfLife = new GameOfLife(2);
         assertEquals("0000",gameOfLife.getAllCellStatus());
+    }
+
+    @Test
+    public void testTwoDimensinonalNonSqaureWorld() {
+        GameOfLife gameOfLife = new GameOfLife(3,2);
+        assertEquals("3x2",gameOfLife.getWorld());
+    }
+
+    @Test
+    public void testNewGameWithTwoByThreeMapReturnsAllCellStatus() {
+        GameOfLife gameOfLife = new GameOfLife(2, 3);
+        assertEquals("000000",gameOfLife.getAllCellStatus());
+    }
+
+    @Test
+    public void testPlantSeedInFirstCell() {
+        GameOfLife gameOfLife = new GameOfLife(2, 3);
+        gameOfLife.plantSeed(0,0);
+        assertEquals("100000",gameOfLife.getAllCellStatus());
+
     }
 }
