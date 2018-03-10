@@ -49,4 +49,10 @@ public class GameOfLifeTest {
         assertEquals("100000",gameOfLife.getAllCellStatus());
 
     }
+    @Test
+    public void testPlantSeedInLastCell() {
+        GameOfLife gameOfLife = new GameOfLife(2, 3);
+        gameOfLife.plantSeed(1,2);
+        assertEquals("000001",gameOfLife.getAllCellStatus());
+    }
 }
