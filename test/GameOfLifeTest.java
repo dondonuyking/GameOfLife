@@ -1,3 +1,4 @@
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -30,60 +31,70 @@ public class GameOfLifeTest {
         assertEquals("0000",gameOfLife.getAllCellStatus());
     }
 
+    private static GameOfLife gameOfLife;
+
+    @Before
+    public void setUp() throws Exception {
+        gameOfLife = new GameOfLife(2,3);
+    }
+
     @Test
     public void testTwoDimensinonalNonSqaureWorld() {
-        GameOfLife gameOfLife = new GameOfLife(3,2);
-        assertEquals("3x2",gameOfLife.getWorld());
+        assertEquals("2x3",gameOfLife.getWorld());
     }
 
     @Test
     public void testNewGameWithTwoByThreeMapReturnsAllCellStatus() {
-        GameOfLife gameOfLife = new GameOfLife(2, 3);
         assertEquals("000000",gameOfLife.getAllCellStatus());
     }
 
     @Test
     public void testPlantSeedInFirstCell() {
-        GameOfLife gameOfLife = new GameOfLife(2, 3);
         gameOfLife.plantSeed(0,0);
         assertEquals("100000",gameOfLife.getAllCellStatus());
 
     }
     @Test
     public void testPlantSeedInLastCell() {
-        GameOfLife gameOfLife = new GameOfLife(2, 3);
         gameOfLife.plantSeed(1,2);
         assertEquals("000001",gameOfLife.getAllCellStatus());
     }
     @Test
     public void testPlantSeedsAtFirstAndLastCell() {
-        GameOfLife gameOfLife = new GameOfLife(2, 3);
         gameOfLife.plantSeed(1, 2);
         gameOfLife.plantSeed(0, 0);
         assertEquals("100001", gameOfLife.getAllCellStatus());
     }
     @Test
     public void testPlantSeedAtSecondCell(){
-        GameOfLife gameOfLife = new GameOfLife(2, 3);
         gameOfLife.plantSeed(0, 1);
         assertEquals("010000", gameOfLife.getAllCellStatus());
     }
     @Test
     public void testPlantSeedAtThirdCell(){
-        GameOfLife gameOfLife = new GameOfLife(2, 3);
         gameOfLife.plantSeed(0, 2);
         assertEquals("001000", gameOfLife.getAllCellStatus());
     }
     @Test
     public void testPlantSeedAtThirdAndFourthCell(){
-        GameOfLife gameOfLife = new GameOfLife(2, 3);
         gameOfLife.plantSeed(0, 2);
         gameOfLife.plantSeed(1, 0);
         assertEquals("001100", gameOfLife.getAllCellStatus());
     }
     @Test
-    public void testGetNextCell(){
-        GameOfLife gameOfLife = new GameOfLife(2, 3);
-        assertEquals("01", gameOfLife.getNextCell(0, 0));
+    public void testGetRightCell(){
+        assertEquals("0", gameOfLife.getRightCell(0, 0));
+    }
+    @Test
+    public void testGetLeftCell(){
+        assertEquals("0", gameOfLife.getLeftCell(0, 1));
+    }
+    @Test
+    public void testGetTopCell(){
+        assertEquals("0", gameOfLife.getTopCell(1, 0));
+    }
+    @Test
+    public void testGetBottomtCell(){
+        assertEquals("0", gameOfLife.getBottomCell(0, 1));
     }
 }
