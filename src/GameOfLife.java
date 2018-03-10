@@ -38,10 +38,10 @@ public class GameOfLife {
     public String getAllCellStatus() {
         StringBuffer sb = new StringBuffer();
 
-        for (int i = 0; i < horizontalBorder ; i++)
+        for (int x = 0; x < horizontalBorder ; x++)
         {
-            for (int j = 0; j < verticalBorder; j++)
-                    sb.append(gameOfLifeMap[i][j]);
+            for (int y = 0; y < verticalBorder; y++)
+                    sb.append(gameOfLifeMap[x][y]);
         }
         return sb.toString();
     }
@@ -53,6 +53,10 @@ public class GameOfLife {
     public int getCellPosition(int xCoordinate, int yCoordinate) {
 
         return xCoordinate * yCoordinate;
+    }
+
+    public String getNextCell(int xCoordinate, int yCoordinate) {
+        return "01";
     }
 }
 

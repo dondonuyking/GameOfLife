@@ -81,4 +81,9 @@ public class GameOfLifeTest {
         gameOfLife.plantSeed(1, 0);
         assertEquals("001100", gameOfLife.getAllCellStatus());
     }
+    @Test
+    public void testGetNextCell(){
+        GameOfLife gameOfLife = new GameOfLife(2, 3);
+        assertEquals("01", gameOfLife.getNextCell(0, 0));
+    }
 }
