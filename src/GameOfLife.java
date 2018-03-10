@@ -56,16 +56,28 @@ public class GameOfLife {
     }
 
     public String getRightCell(int xCoordinate, int yCoordinate) {
+        if (yCoordinate >= verticalBorder -1) {
+            return " ";
+        }
         return String.valueOf(gameOfLifeMap[xCoordinate][yCoordinate+1]);
     }
 
     public String getLeftCell(int xCoordinate, int yCoordinate) {
+        if (yCoordinate <= 0) {
+            return " ";
+        }
         return String.valueOf(gameOfLifeMap[xCoordinate][yCoordinate-1]);
     }
     public String getTopCell(int xCoordinate, int yCoordinate) {
+        if (xCoordinate <= 0) {
+            return " ";
+        }
         return String.valueOf(gameOfLifeMap[xCoordinate-1][yCoordinate]);
     }
     public String getBottomCell(int xCoordinate, int yCoordinate) {
+        if (xCoordinate >= horizontalBorder-1) {
+            return " ";
+        }
         return String.valueOf(gameOfLifeMap[xCoordinate+1][yCoordinate]);
     }
     public String getTopLeftCell(int xCoordinate, int yCoordinate) {

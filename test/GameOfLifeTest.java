@@ -121,4 +121,22 @@ public class GameOfLifeTest {
         gameOfLife.plantSeed(1,2);
         assertEquals("1", gameOfLife.getBottomRightCell(0, 1));
     }
+    @Test
+    public void testGetRightCellIfCellisAlreadyinTheEdge(){
+        assertEquals(" ", gameOfLife.getRightCell(0, 2));
+
+    }
+    @Test
+    public void testGetLeftCellIfCellisAlreadyinTheEdge(){
+        assertEquals(" ", gameOfLife.getLeftCell(0, 0));
+    }
+    @Test
+    public void testGetTopCellIfCellisAlreadyinTheEdge(){
+        assertEquals(" ", gameOfLife.getTopCell(0, 0));
+    }
+    @Test
+    public void testGetBottomCellIfCellisAlreadyinTheEdge(){
+        assertEquals(" ", gameOfLife.getBottomCell(1, 0));
+    }
+
 }
