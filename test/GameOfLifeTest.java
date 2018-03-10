@@ -55,4 +55,30 @@ public class GameOfLifeTest {
         gameOfLife.plantSeed(1,2);
         assertEquals("000001",gameOfLife.getAllCellStatus());
     }
+    @Test
+    public void testPlantSeedsAtFirstAndLastCell() {
+        GameOfLife gameOfLife = new GameOfLife(2, 3);
+        gameOfLife.plantSeed(1, 2);
+        gameOfLife.plantSeed(0, 0);
+        assertEquals("100001", gameOfLife.getAllCellStatus());
+    }
+    @Test
+    public void testPlantSeedAtSecondCell(){
+        GameOfLife gameOfLife = new GameOfLife(2, 3);
+        gameOfLife.plantSeed(0, 1);
+        assertEquals("010000", gameOfLife.getAllCellStatus());
+    }
+    @Test
+    public void testPlantSeedAtThirdCell(){
+        GameOfLife gameOfLife = new GameOfLife(2, 3);
+        gameOfLife.plantSeed(0, 2);
+        assertEquals("001000", gameOfLife.getAllCellStatus());
+    }
+    @Test
+    public void testPlantSeedAtThirdAndFourthCell(){
+        GameOfLife gameOfLife = new GameOfLife(2, 3);
+        gameOfLife.plantSeed(0, 2);
+        gameOfLife.plantSeed(1, 0);
+        assertEquals("001100", gameOfLife.getAllCellStatus());
+    }
 }
