@@ -83,18 +83,42 @@ public class GameOfLifeTest {
     }
     @Test
     public void testGetRightCell(){
-        assertEquals("0", gameOfLife.getRightCell(0, 0));
+        gameOfLife.plantSeed(0,1);
+        assertEquals("1", gameOfLife.getRightCell(0, 0));
     }
     @Test
     public void testGetLeftCell(){
-        assertEquals("0", gameOfLife.getLeftCell(0, 1));
+        gameOfLife.plantSeed(0,0);
+        assertEquals("1", gameOfLife.getLeftCell(0, 1));
     }
     @Test
     public void testGetTopCell(){
-        assertEquals("0", gameOfLife.getTopCell(1, 0));
+        gameOfLife.plantSeed(0,0);
+        assertEquals("1", gameOfLife.getTopCell(1, 0));
     }
     @Test
     public void testGetBottomtCell(){
-        assertEquals("0", gameOfLife.getBottomCell(0, 1));
+        gameOfLife.plantSeed(1,1);
+        assertEquals("1", gameOfLife.getBottomCell(0, 1));
+    }
+    @Test
+    public void testGetTopLeftCell(){
+        gameOfLife.plantSeed(0,0);
+        assertEquals("1", gameOfLife.getTopLeftCell(1, 1));
+    }
+    @Test
+    public void testGetTopRightCell(){
+        gameOfLife.plantSeed(0,2);
+        assertEquals("1", gameOfLife.getTopRightCell(1, 1));
+    }
+    @Test
+    public void testGetBottomLeftCell(){
+        gameOfLife.plantSeed(1,1);
+        assertEquals("1", gameOfLife.getBottomLeftCell(0, 2));
+    }
+    @Test
+    public void testGetBottompRightCell(){
+        gameOfLife.plantSeed(1,2);
+        assertEquals("1", gameOfLife.getBottomRightCell(0, 1));
     }
 }

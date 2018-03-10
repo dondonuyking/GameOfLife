@@ -68,5 +68,17 @@ public class GameOfLife {
     public String getBottomCell(int xCoordinate, int yCoordinate) {
         return String.valueOf(gameOfLifeMap[xCoordinate+1][yCoordinate]);
     }
+    public String getTopLeftCell(int xCoordinate, int yCoordinate) {
+        return String.valueOf(gameOfLifeMap[xCoordinate-1][yCoordinate-1]);
+    }
+    public String getTopRightCell(int xCoordinate, int yCoordinate) {
+        return String.valueOf(gameOfLifeMap[xCoordinate-1][yCoordinate+1]);
+    }
+    public String getBottomLeftCell(int xCoordinate, int yCoordinate) {
+        return String.valueOf(gameOfLifeMap[xCoordinate+1][yCoordinate-1]);
+    }
+    public String getBottomRightCell(int xCoordinate, int yCoordinate) {
+        return String.valueOf(gameOfLifeMap[xCoordinate+1][yCoordinate+1]);
+    }
 }
 
