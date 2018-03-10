@@ -81,15 +81,27 @@ public class GameOfLife {
         return String.valueOf(gameOfLifeMap[xCoordinate+1][yCoordinate]);
     }
     public String getTopLeftCell(int xCoordinate, int yCoordinate) {
+        if ((xCoordinate <= 0) || (yCoordinate <=0)) {
+            return " ";
+        }
         return String.valueOf(gameOfLifeMap[xCoordinate-1][yCoordinate-1]);
     }
     public String getTopRightCell(int xCoordinate, int yCoordinate) {
+        if ((xCoordinate <= 0) || (yCoordinate >= verticalBorder -1)) {
+            return " ";
+        }
         return String.valueOf(gameOfLifeMap[xCoordinate-1][yCoordinate+1]);
     }
     public String getBottomLeftCell(int xCoordinate, int yCoordinate) {
+        if ((xCoordinate >= horizontalBorder-1) || (yCoordinate <=0)) {
+            return " ";
+        }
         return String.valueOf(gameOfLifeMap[xCoordinate+1][yCoordinate-1]);
     }
     public String getBottomRightCell(int xCoordinate, int yCoordinate) {
+        if ((xCoordinate >= horizontalBorder -1) || (yCoordinate >= verticalBorder-1)) {
+            return " ";
+        }
         return String.valueOf(gameOfLifeMap[xCoordinate+1][yCoordinate+1]);
     }
 }

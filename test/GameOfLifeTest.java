@@ -122,21 +122,20 @@ public class GameOfLifeTest {
         assertEquals("1", gameOfLife.getBottomRightCell(0, 1));
     }
     @Test
-    public void testGetRightCellIfCellisAlreadyinTheEdge(){
-        assertEquals(" ", gameOfLife.getRightCell(0, 2));
-
-    }
-    @Test
-    public void testGetLeftCellIfCellisAlreadyinTheEdge(){
+    public void testGetHorizontalAndVertiacalBorderIfCellAlReadyInEdge(){
         assertEquals(" ", gameOfLife.getLeftCell(0, 0));
-    }
-    @Test
-    public void testGetTopCellIfCellisAlreadyinTheEdge(){
+        assertEquals(" ", gameOfLife.getRightCell(0, 2));
         assertEquals(" ", gameOfLife.getTopCell(0, 0));
-    }
-    @Test
-    public void testGetBottomCellIfCellisAlreadyinTheEdge(){
         assertEquals(" ", gameOfLife.getBottomCell(1, 0));
     }
-
+    @Test
+    public void testDiagonalBordersIfCellAlreadyInTheEdge(){
+        assertEquals(" ", gameOfLife.getTopLeftCell(0, 0));
+        assertEquals(" ", gameOfLife.getTopRightCell(0, 0));
+        assertEquals(" ", gameOfLife.getBottomRightCell(1, 0));
+        assertEquals(" ", gameOfLife.getTopLeftCell(0, 0));
+        assertEquals(" ", gameOfLife.getBottomLeftCell(0, 0));
+        assertEquals(" ", gameOfLife.getTopRightCell(0, 0));
+        assertEquals(" ", gameOfLife.getBottomRightCell(1, 0));
+    }
 }
