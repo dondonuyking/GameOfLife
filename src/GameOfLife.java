@@ -1,156 +1,123 @@
 public class GameOfLife {
 
-    private static int horizontalBorder;
-    private static int verticalBorder;
+    private static int maxRows;
+    private static int maxColumns;
     public static char[][] gameOfLifeMap;
 
-    public GameOfLife(int maxCoordinate) {
-        initializeGameOfLifeMap(maxCoordinate,maxCoordinate);
+    public GameOfLife(int maxRowAndColums) {
+        initializeGameOfLifeMap(maxRowAndColums,maxRowAndColums);
     }
 
-    public GameOfLife(int maxXCoordinate, int maxYCoordinate) {
-        initializeGameOfLifeMap(maxXCoordinate,maxYCoordinate);
+    public GameOfLife(int inputMaxRow, int inputMaxColumn) {
+        initializeGameOfLifeMap(inputMaxRow,inputMaxColumn);
     }
 
-    private void initializeGameOfLifeMap(int maxXCoordinate, int maxYCoordinate){
-        horizontalBorder = maxXCoordinate;
-        verticalBorder = maxYCoordinate;
-        gameOfLifeMap = new char[horizontalBorder][verticalBorder];
+    private void initializeGameOfLifeMap(int inputMaxRow, int inputMaxColumn){
+        maxRows = inputMaxRow;
+        maxColumns = inputMaxColumn;
+        gameOfLifeMap = new char[maxRows][maxColumns];
 
-        for (int i = 0; i < horizontalBorder ; i++)
+        for (int cellRow = 0; cellRow < maxRows; cellRow++)
         {
-            for (int j = 0; j < verticalBorder; j++)
-                gameOfLifeMap[i][j] = '0';
+            for (int cellColumn = 0; cellColumn < maxColumns; cellColumn++)
+                gameOfLifeMap[cellRow][cellColumn] = '0';
         }
 
 
     }
     public String getWorld () {
-        return String.valueOf(horizontalBorder).concat("x").concat(String.valueOf(verticalBorder));
-    }
-
-    public int getNumberOfCells() {
-        return horizontalBorder * verticalBorder;
+        return String.valueOf(maxRows).concat("x").concat(String.valueOf(maxColumns));
     }
 
     public String getAllCellStatus() {
         StringBuffer sb = new StringBuffer();
 
-        for (int x = 0; x < horizontalBorder ; x++)
+        for (int row = 0; row < maxRows; row++)
         {
-            for (int y = 0; y < verticalBorder; y++)
-                    sb.append(gameOfLifeMap[x][y]);
+            for (int column = 0; column < maxColumns; column++)
+                    sb.append(gameOfLifeMap[row][column]);
         }
         return sb.toString();
     }
 
-    public void plantSeed(int xCoordinate, int yCoordinate) {
-     gameOfLifeMap[xCoordinate][yCoordinate] = '1';
+    public void plantSeed(int row, int column) {
+     gameOfLifeMap[row][column] = '1';
     }
 
-    public int getCellPosition(int xCoordinate, int yCoordinate) {
-
-        return xCoordinate * yCoordinate;
-    }
-
-    public String getRightCell(int xCoordinate, int yCoordinate) {
-        if (yCoordinate >= verticalBorder -1) {
-            return " ";
+    public String getRightCell(int row, int column) {
+        if (column >= maxColumns -1) {
+            return "0";
         }
-        return String.valueOf(gameOfLifeMap[xCoordinate][yCoordinate+1]);
+        return String.valueOf(gameOfLifeMap[row][column+1]);
     }
 
-    public String getLeftCell(int xCoordinate, int yCoordinate) {
-        if (yCoordinate <= 0) {
-            return " ";
+    public String getLeftCell(int row, int column) {
+        if (column <= 0) {
+            return "0";
         }
-        return String.valueOf(gameOfLifeMap[xCoordinate][yCoordinate-1]);
+        return String.valueOf(gameOfLifeMap[row][column-1]);
     }
-    public String getTopCell(int xCoordinate, int yCoordinate) {
-        if (xCoordinate <= 0) {
-            return " ";
+    public String getTopCell(int row, int column) {
+        if (row <= 0) {
+            return "0";
         }
-        return String.valueOf(gameOfLifeMap[xCoordinate-1][yCoordinate]);
+        return String.valueOf(gameOfLifeMap[row-1][column]);
     }
-    public String getBottomCell(int xCoordinate, int yCoordinate) {
-        if (xCoordinate >= horizontalBorder-1) {
-            return " ";
+    public String getBottomCell(int row, int column) {
+        if (row >= maxRows -1) {
+            return "0";
         }
-        return String.valueOf(gameOfLifeMap[xCoordinate+1][yCoordinate]);
+        return String.valueOf(gameOfLifeMap[row+1][column]);
     }
-    public String getTopLeftCell(int xCoordinate, int yCoordinate) {
-        if ((xCoordinate <= 0) || (yCoordinate <=0)) {
-            return " ";
+    public String getTopLeftCell(int row, int column) {
+        if ((row <= 0) || (column <=0)) {
+            return "0";
         }
-        return String.valueOf(gameOfLifeMap[xCoordinate-1][yCoordinate-1]);
+        return String.valueOf(gameOfLifeMap[row-1][column-1]);
     }
-    public String getTopRightCell(int xCoordinate, int yCoordinate) {
-        if ((xCoordinate <= 0) || (yCoordinate >= verticalBorder -1)) {
-            return " ";
+    public String getTopRightCell(int row, int column) {
+        if ((row <= 0) || (column >= maxColumns -1)) {
+            return "0";
         }
-        return String.valueOf(gameOfLifeMap[xCoordinate-1][yCoordinate+1]);
+        return String.valueOf(gameOfLifeMap[row-1][column+1]);
     }
-    public String getBottomLeftCell(int xCoordinate, int yCoordinate) {
-        if ((xCoordinate >= horizontalBorder-1) || (yCoordinate <=0)) {
-            return " ";
+    public String getBottomLeftCell(int row, int column) {
+        if ((row >= maxRows -1) || (column <=0)) {
+            return "0";
         }
-        return String.valueOf(gameOfLifeMap[xCoordinate+1][yCoordinate-1]);
+        return String.valueOf(gameOfLifeMap[row+1][column-1]);
     }
-    public String getBottomRightCell(int xCoordinate, int yCoordinate) {
-        if ((xCoordinate >= horizontalBorder -1) || (yCoordinate >= verticalBorder-1)) {
-            return " ";
+    public String getBottomRightCell(int row, int column) {
+        if ((row >= maxRows -1) || (column >= maxColumns -1)) {
+            return "0";
         }
-        return String.valueOf(gameOfLifeMap[xCoordinate+1][yCoordinate+1]);
+        return String.valueOf(gameOfLifeMap[row+1][column+1]);
     }
 
-    public int getNumberOfLivingNeighbors(int xCoordinate, int yCoordinate) {
+    public int getNumberOfLivingNeighbors(int row, int column) {
         return
-        integerValueOfLiveCell(getLeftCell(xCoordinate,yCoordinate)) +
-                integerValueOfLiveCell(getRightCell(xCoordinate,yCoordinate)) +
-                        integerValueOfLiveCell(getTopCell(xCoordinate,yCoordinate)) +
-                                integerValueOfLiveCell(getBottomCell(xCoordinate,yCoordinate)) +
-                                        integerValueOfLiveCell(getTopLeftCell(xCoordinate,yCoordinate)) +
-                                                integerValueOfLiveCell(getBottomLeftCell(xCoordinate,yCoordinate)) +
-                                                        integerValueOfLiveCell(getTopRightCell(xCoordinate,yCoordinate)) +
-                                                                integerValueOfLiveCell(getBottomRightCell(xCoordinate,yCoordinate));
+        integerValueOfLiveCell(getLeftCell(row,column)) +
+                integerValueOfLiveCell(getRightCell(row,column)) +
+                        integerValueOfLiveCell(getTopCell(row,column)) +
+                                integerValueOfLiveCell(getBottomCell(row,column)) +
+                                        integerValueOfLiveCell(getTopLeftCell(row,column)) +
+                                                integerValueOfLiveCell(getBottomLeftCell(row,column)) +
+                                                        integerValueOfLiveCell(getTopRightCell(row,column)) +
+                                                                integerValueOfLiveCell(getBottomRightCell(row,column));
 
     }
 
     public int integerValueOfLiveCell(String stringValueOfCell){
-        if (stringValueOfCell.equals(" ")) {
-            return 0;
-        };
-        return Integer.parseInt(stringValueOfCell);
+         return Integer.parseInt(stringValueOfCell);
     }
 
-    public int getNumberOfLDeadNeighbors(int xCoordinate, int yCoordinate) {
-        return
-                integerValueOfDeadCell(getLeftCell(xCoordinate,yCoordinate)) +
-                        integerValueOfDeadCell(getRightCell(xCoordinate,yCoordinate)) +
-                        integerValueOfDeadCell(getTopCell(xCoordinate,yCoordinate)) +
-                        integerValueOfDeadCell(getBottomCell(xCoordinate,yCoordinate)) +
-                        integerValueOfDeadCell(getTopLeftCell(xCoordinate,yCoordinate)) +
-                        integerValueOfDeadCell(getBottomLeftCell(xCoordinate,yCoordinate)) +
-                        integerValueOfDeadCell(getTopRightCell(xCoordinate,yCoordinate)) +
-                        integerValueOfDeadCell(getBottomRightCell(xCoordinate,yCoordinate));
+    public boolean shouldLiveInNextGeneration(int row, int column) {
+        int liveNeighbors = getNumberOfLivingNeighbors(row,column);
 
-
-    }
-
-    private int integerValueOfDeadCell(String stringValueOfCell) {
-        if (stringValueOfCell.equals(" ") || stringValueOfCell.equals("1")) {
-            return 0;
-        };
-        return 1;
-    }
-
-    public boolean shouldLiveInNextGeneration(int xCoordinate, int yCoordinate) {
-        int liveNeighbors = getNumberOfLivingNeighbors(xCoordinate,yCoordinate);
-
-        if ("0".equals(String.valueOf(gameOfLifeMap[xCoordinate][yCoordinate])) && liveNeighbors == 3){
+        if ("0".equals(String.valueOf(gameOfLifeMap[row][column])) && liveNeighbors == 3){
             return true;
         }
-        if ("1".equals(String.valueOf(gameOfLifeMap[xCoordinate][yCoordinate])) && (liveNeighbors == 2 || liveNeighbors == 3)) {
+        if ("1".equals(String.valueOf(gameOfLifeMap[row][column])) && (liveNeighbors == 2 || liveNeighbors == 3)) {
             return true;
         }
         return  false;

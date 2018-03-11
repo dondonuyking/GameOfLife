@@ -15,11 +15,7 @@ public class GameOfLifeTest {
         GameOfLife gameOfLife = new GameOfLife(3);
         assertEquals("3x3",gameOfLife.getWorld());
     }
-    @Test
-    public void testGetNumberOfCells() {
-        GameOfLife gameOfLife = new GameOfLife(3);
-        assertEquals(9,gameOfLife.getNumberOfCells());
-    }
+
     @Test
     public void testNewGameWithFourByFourMapReturnsAllCellStatus() {
         GameOfLife gameOfLife = new GameOfLife(4);
@@ -123,20 +119,20 @@ public class GameOfLifeTest {
     }
     @Test
     public void testGetHorizontalAndVertiacalBorderIfCellAlReadyInEdge(){
-        assertEquals(" ", gameOfLife.getLeftCell(0, 0));
-        assertEquals(" ", gameOfLife.getRightCell(0, 2));
-        assertEquals(" ", gameOfLife.getTopCell(0, 0));
-        assertEquals(" ", gameOfLife.getBottomCell(1, 0));
+        assertEquals("0", gameOfLife.getLeftCell(0, 0));
+        assertEquals("0", gameOfLife.getRightCell(0, 2));
+        assertEquals("0", gameOfLife.getTopCell(0, 0));
+        assertEquals("0", gameOfLife.getBottomCell(1, 0));
     }
     @Test
     public void testDiagonalBordersIfCellAlreadyInTheEdge(){
-        assertEquals(" ", gameOfLife.getTopLeftCell(0, 0));
-        assertEquals(" ", gameOfLife.getTopRightCell(0, 0));
-        assertEquals(" ", gameOfLife.getBottomRightCell(1, 0));
-        assertEquals(" ", gameOfLife.getTopLeftCell(0, 0));
-        assertEquals(" ", gameOfLife.getBottomLeftCell(0, 0));
-        assertEquals(" ", gameOfLife.getTopRightCell(0, 0));
-        assertEquals(" ", gameOfLife.getBottomRightCell(1, 0));
+        assertEquals("0", gameOfLife.getTopLeftCell(0, 0));
+        assertEquals("0", gameOfLife.getTopRightCell(0, 0));
+        assertEquals("0", gameOfLife.getBottomRightCell(1, 0));
+        assertEquals("0", gameOfLife.getTopLeftCell(0, 0));
+        assertEquals("0", gameOfLife.getBottomLeftCell(0, 0));
+        assertEquals("0", gameOfLife.getTopRightCell(0, 0));
+        assertEquals("0", gameOfLife.getBottomRightCell(1, 0));
     }
     @Test
     public void testGetNumberOfLivingNeighbors(){
@@ -185,26 +181,7 @@ public class GameOfLifeTest {
         assertEquals(2, gameOfLife.getNumberOfLivingNeighbors(1, 2));
 
     }
-    @Test
-    public void testGetNumberOfDeadNeighbors(){
-        assertEquals(3, gameOfLife.getNumberOfLDeadNeighbors(0, 0));
-        assertEquals(5, gameOfLife.getNumberOfLDeadNeighbors(0, 1));
-        assertEquals(3, gameOfLife.getNumberOfLDeadNeighbors(0, 2));
-        assertEquals(3, gameOfLife.getNumberOfLDeadNeighbors(1, 0));
-        assertEquals(5, gameOfLife.getNumberOfLDeadNeighbors(1, 1));
-        assertEquals(3, gameOfLife.getNumberOfLDeadNeighbors(1, 2));
-    }
-    public void testGetNumberOfDeadNeighborsWithThreeLiveCells(){
-        gameOfLife.plantSeed(0,1);
-        gameOfLife.plantSeed(1,1);
-        gameOfLife.plantSeed(1,2);
-        assertEquals(2, gameOfLife.getNumberOfLDeadNeighbors(0, 0));
-        assertEquals(2, gameOfLife.getNumberOfLDeadNeighbors(0, 1));
-        assertEquals(3, gameOfLife.getNumberOfLDeadNeighbors(0, 2));
-        assertEquals(2, gameOfLife.getNumberOfLDeadNeighbors(1, 0));
-        assertEquals(2, gameOfLife.getNumberOfLDeadNeighbors(1, 1));
-        assertEquals(2, gameOfLife.getNumberOfLDeadNeighbors(1, 2));
-    }
+
     @Test
     public void testIfCellShouldLiveInNextGeneration(){
         assertEquals(false, gameOfLife.shouldLiveInNextGeneration(0, 0));
