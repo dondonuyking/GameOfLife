@@ -224,6 +224,7 @@ public class GameOfLifeTest {
         assertEquals(true, gameOfLife.shouldLiveInNextGeneration(1, 1));
         assertEquals(false, gameOfLife.shouldLiveInNextGeneration(1, 2));
     }
+    @Test
     public void testIfCellShouldLiveInNextGenerationWithFourLivingCells(){
         gameOfLife.plantSeed(0,0);
         gameOfLife.plantSeed(0,1);
@@ -234,8 +235,9 @@ public class GameOfLifeTest {
         assertEquals(true, gameOfLife.shouldLiveInNextGeneration(0, 2));
         assertEquals(false, gameOfLife.shouldLiveInNextGeneration(1, 0));
         assertEquals(false, gameOfLife.shouldLiveInNextGeneration(1, 1));
-        assertEquals(false, gameOfLife.shouldLiveInNextGeneration(1, 2));
+        assertEquals(true, gameOfLife.shouldLiveInNextGeneration(1, 2));
     }
+    @Test
     public void testIfCellShouldLiveInNextGenerationWithFiveLivingCells(){
         gameOfLife.plantSeed(0,0);
         gameOfLife.plantSeed(0,1);

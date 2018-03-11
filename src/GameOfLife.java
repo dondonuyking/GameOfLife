@@ -114,13 +114,22 @@ public class GameOfLife {
     public boolean shouldLiveInNextGeneration(int row, int column) {
         int liveNeighbors = getNumberOfLivingNeighbors(row,column);
 
-        if ("0".equals(String.valueOf(gameOfLifeMap[row][column])) && liveNeighbors == 3){
+        if (isCellAlive(gameOfLifeMap[row][column]) && (liveNeighbors == 2 || liveNeighbors == 3)) {
             return true;
         }
-        if ("1".equals(String.valueOf(gameOfLifeMap[row][column])) && (liveNeighbors == 2 || liveNeighbors == 3)) {
+        if (isCellDead(gameOfLifeMap[row][column]) && liveNeighbors == 3){
             return true;
         }
         return  false;
+    }
+
+    public boolean isCellAlive(Character cell) {
+        if ("1".equals(String.valueOf(cell)))
+            return true;
+        return false;
+    }
+    public boolean isCellDead(Character cell) {
+        return !isCellAlive(cell);
     }
 }
 
