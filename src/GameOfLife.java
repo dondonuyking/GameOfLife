@@ -1,9 +1,11 @@
+import static java.lang.System.arraycopy;
+
 public class GameOfLife {
 
     private static int maxRows;
     private static int maxColumns;
     public static char[][] gameOfLifeMap;
-    public static char[][] gameOfLifeMapSnapShot;
+    public static char[][] gameOfLifeMapSnapShot = null;
 
 
     public GameOfLife(int maxRowAndColums) {
@@ -18,11 +20,23 @@ public class GameOfLife {
         maxRows = inputMaxRow;
         maxColumns = inputMaxColumn;
         gameOfLifeMap = new char[maxRows][maxColumns];
-
+        gameOfLifeMapSnapShot = null;
         for (int cellRow = 0; cellRow < maxRows; cellRow++)
         {
             for (int cellColumn = 0; cellColumn < maxColumns; cellColumn++)
                 gameOfLifeMap[cellRow][cellColumn] = '0';
+        }
+
+
+    }
+    private void initializeGameOfLifeMapSnapShot(){
+
+        gameOfLifeMapSnapShot = new char[maxRows][maxColumns];
+
+        for (int cellRow = 0; cellRow < maxRows; cellRow++)
+        {
+            for (int cellColumn = 0; cellColumn < maxColumns; cellColumn++)
+                gameOfLifeMapSnapShot[cellRow][cellColumn] = gameOfLifeMap[cellRow][cellColumn];
         }
 
 
@@ -145,11 +159,14 @@ public class GameOfLife {
     }
 
     public void killCell(int row, int column) {
-        gameOfLifeMap[row][column] = '0';
+        getMapSnapShot()[row][column] = '0';
     }
 
     public char[][] getMapSnapShot() {
-        return gameOfLifeMapSnapShot = gameOfLifeMap.clone();
+        if (gameOfLifeMapSnapShot == null) {
+            initializeGameOfLifeMapSnapShot();
+        }
+        return gameOfLifeMapSnapShot;
     }
 
     public String getSnapShotCellStatus() {
