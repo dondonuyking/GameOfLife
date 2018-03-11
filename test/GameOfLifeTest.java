@@ -369,16 +369,17 @@ public class GameOfLifeTest {
     }
     @Test
     public void testMultipleTicksinThreeByThreeMap() {
-        gameOfLife = new GameOfLife(3)
+        gameOfLife = new GameOfLife(3);
         gameOfLife.plantSeed(0,0);
         gameOfLife.plantSeed(0,2);
         gameOfLife.plantSeed(1,1);
+        gameOfLife.plantSeed(2,1);
         gameOfLife.tick();
-        assertEquals("",gameOfLife.getAllCellStatus());
+        assertEquals("010111000",gameOfLife.getAllCellStatus());
         gameOfLife.tick();
-        assertEquals("000000",gameOfLife.getAllCellStatus());
+        assertEquals("111111010",gameOfLife.getAllCellStatus());
         gameOfLife.tick();
-        assertEquals("000000",gameOfLife.getAllCellStatus());
+        assertEquals("101000111",gameOfLife.getAllCellStatus());
     }
 
 }
