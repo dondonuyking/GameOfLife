@@ -205,4 +205,72 @@ public class GameOfLifeTest {
         assertEquals(2, gameOfLife.getNumberOfLDeadNeighbors(1, 1));
         assertEquals(2, gameOfLife.getNumberOfLDeadNeighbors(1, 2));
     }
+    @Test
+    public void testIfCellShouldLiveInNextGeneration(){
+        assertEquals(false, gameOfLife.shouldLiveInNextGeneration(0, 0));
+        assertEquals(false, gameOfLife.shouldLiveInNextGeneration(0, 1));
+        assertEquals(false, gameOfLife.shouldLiveInNextGeneration(0, 2));
+        assertEquals(false, gameOfLife.shouldLiveInNextGeneration(1, 0));
+        assertEquals(false, gameOfLife.shouldLiveInNextGeneration(1, 1));
+        assertEquals(false, gameOfLife.shouldLiveInNextGeneration(1, 2));
+    }
+    @Test
+    public void testIfCellShouldLiveInNextGenerationWithOneLivingCell(){
+        gameOfLife.plantSeed(0,0);
+        assertEquals(false, gameOfLife.shouldLiveInNextGeneration(0, 0));
+        assertEquals(false, gameOfLife.shouldLiveInNextGeneration(0, 1));
+        assertEquals(false, gameOfLife.shouldLiveInNextGeneration(0, 2));
+        assertEquals(false, gameOfLife.shouldLiveInNextGeneration(1, 0));
+        assertEquals(false, gameOfLife.shouldLiveInNextGeneration(1, 1));
+        assertEquals(false, gameOfLife.shouldLiveInNextGeneration(1, 2));
+    }
+    @Test
+    public void testIfCellShouldLiveInNextGenerationWithTwoLivingCells(){
+        gameOfLife.plantSeed(0,0);
+        gameOfLife.plantSeed(0,1);
+        assertEquals(false, gameOfLife.shouldLiveInNextGeneration(0, 0));
+        assertEquals(false, gameOfLife.shouldLiveInNextGeneration(0, 1));
+        assertEquals(false, gameOfLife.shouldLiveInNextGeneration(0, 2));
+        assertEquals(false, gameOfLife.shouldLiveInNextGeneration(1, 0));
+        assertEquals(false, gameOfLife.shouldLiveInNextGeneration(1, 1));
+        assertEquals(false, gameOfLife.shouldLiveInNextGeneration(1, 2));
+    }
+    @Test
+    public void testIfCellShouldLiveInNextGenerationWithThreeLivingCells(){
+        gameOfLife.plantSeed(0,0);
+        gameOfLife.plantSeed(0,1);
+        gameOfLife.plantSeed(0,2);
+        assertEquals(false, gameOfLife.shouldLiveInNextGeneration(0, 0));
+        assertEquals(true, gameOfLife.shouldLiveInNextGeneration(0, 1));
+        assertEquals(false, gameOfLife.shouldLiveInNextGeneration(0, 2));
+        assertEquals(false, gameOfLife.shouldLiveInNextGeneration(1, 0));
+        assertEquals(true, gameOfLife.shouldLiveInNextGeneration(1, 1));
+        assertEquals(false, gameOfLife.shouldLiveInNextGeneration(1, 2));
+    }
+    public void testIfCellShouldLiveInNextGenerationWithFourLivingCells(){
+        gameOfLife.plantSeed(0,0);
+        gameOfLife.plantSeed(0,1);
+        gameOfLife.plantSeed(0,2);
+        gameOfLife.plantSeed(1,2);
+        assertEquals(false, gameOfLife.shouldLiveInNextGeneration(0, 0));
+        assertEquals(true, gameOfLife.shouldLiveInNextGeneration(0, 1));
+        assertEquals(true, gameOfLife.shouldLiveInNextGeneration(0, 2));
+        assertEquals(false, gameOfLife.shouldLiveInNextGeneration(1, 0));
+        assertEquals(false, gameOfLife.shouldLiveInNextGeneration(1, 1));
+        assertEquals(false, gameOfLife.shouldLiveInNextGeneration(1, 2));
+    }
+    public void testIfCellShouldLiveInNextGenerationWithFiveLivingCells(){
+        gameOfLife.plantSeed(0,0);
+        gameOfLife.plantSeed(0,1);
+        gameOfLife.plantSeed(0,2);
+        gameOfLife.plantSeed(1,1);
+        gameOfLife.plantSeed(1,2);
+        assertEquals(true, gameOfLife.shouldLiveInNextGeneration(0, 0));
+        assertEquals(false, gameOfLife.shouldLiveInNextGeneration(0, 1));
+        assertEquals(true, gameOfLife.shouldLiveInNextGeneration(0, 2));
+        assertEquals(true, gameOfLife.shouldLiveInNextGeneration(1, 0));
+        assertEquals(false, gameOfLife.shouldLiveInNextGeneration(1, 1));
+        assertEquals(true, gameOfLife.shouldLiveInNextGeneration(1, 2));
+    }
+
 }

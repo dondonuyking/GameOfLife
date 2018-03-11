@@ -143,5 +143,17 @@ public class GameOfLife {
         };
         return 1;
     }
+
+    public boolean shouldLiveInNextGeneration(int xCoordinate, int yCoordinate) {
+        int liveNeighbors = getNumberOfLivingNeighbors(xCoordinate,yCoordinate);
+
+        if ("0".equals(String.valueOf(gameOfLifeMap[xCoordinate][yCoordinate])) && liveNeighbors == 3){
+            return true;
+        }
+        if ("1".equals(String.valueOf(gameOfLifeMap[xCoordinate][yCoordinate])) && (liveNeighbors == 2 || liveNeighbors == 3)) {
+            return true;
+        }
+        return  false;
+    }
 }
 
