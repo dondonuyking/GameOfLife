@@ -131,5 +131,9 @@ public class GameOfLife {
     public boolean isCellDead(Character cell) {
         return !isCellAlive(cell);
     }
+
+    public void killCell(int row, int column) {
+        gameOfLifeMap[row][column] = '0';
+    }
 }
 
