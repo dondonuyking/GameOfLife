@@ -29,17 +29,23 @@ public class GameOfLife {
 
 
     }
-    private void initializeGameOfLifeMapSnapShot(){
+    public void initializeGameOfLifeMapSnapShot(){
 
-        gameOfLifeMapSnapShot = new char[maxRows][maxColumns];
+        if (gameOfLifeMapSnapShot == null) {
+            gameOfLifeMapSnapShot = new char[maxRows][maxColumns];
 
-        for (int cellRow = 0; cellRow < maxRows; cellRow++)
-        {
-            for (int cellColumn = 0; cellColumn < maxColumns; cellColumn++)
-                gameOfLifeMapSnapShot[cellRow][cellColumn] = gameOfLifeMap[cellRow][cellColumn];
+            for (int cellRow = 0; cellRow < maxRows; cellRow++) {
+                for (int cellColumn = 0; cellColumn < maxColumns; cellColumn++)
+                    gameOfLifeMapSnapShot[cellRow][cellColumn] = gameOfLifeMap[cellRow][cellColumn];
+            }
         }
+    }
+    public void updateGameOfLifeMap(){
 
-
+        for (int cellRow = 0; cellRow < maxRows; cellRow++) {
+             for (int cellColumn = 0; cellColumn < maxColumns; cellColumn++)
+                 gameOfLifeMap[cellRow][cellColumn] = gameOfLifeMapSnapShot[cellRow][cellColumn];
+            }
     }
     public String getWorld () {
         return String.valueOf(maxRows).concat("x").concat(String.valueOf(maxColumns));
@@ -161,16 +167,34 @@ public class GameOfLife {
     public void killCell(int row, int column) {
         getMapSnapShot()[row][column] = '0';
     }
+    private void makeCellLive(int row, int column ) {
+        getMapSnapShot()[row][column] = '1';
+    }
 
     public char[][] getMapSnapShot() {
-        if (gameOfLifeMapSnapShot == null) {
-            initializeGameOfLifeMapSnapShot();
-        }
-        return gameOfLifeMapSnapShot;
+         return gameOfLifeMapSnapShot;
     }
 
     public String getSnapShotCellStatus() {
         return getAllCellStatus(getMapSnapShot());
     }
+
+    public void tick() {
+        initializeGameOfLifeMapSnapShot();
+        for (int cellRow = 0; cellRow < maxRows; cellRow++)
+        {
+            for (int cellColumn = 0; cellColumn < maxColumns; cellColumn++)
+            {
+                if (shouldLiveInNextGeneration(cellRow,cellColumn))
+                    makeCellLive(cellRow,cellColumn);
+                else
+                    killCell(cellRow,cellColumn);
+            }
+        }
+        updateGameOfLifeMap();
+    }
+
+
+
 }
 

@@ -273,6 +273,7 @@ public class GameOfLifeTest {
         gameOfLife.plantSeed(0,2);
         gameOfLife.plantSeed(1,1);
         gameOfLife.plantSeed(1,2);
+        gameOfLife.initializeGameOfLifeMapSnapShot();
         assertEquals("111011",gameOfLife.getAllCellStatus());
         if (!gameOfLife.shouldLiveInNextGeneration(0, 1)) {
             gameOfLife.killCell(0,1);
@@ -281,12 +282,13 @@ public class GameOfLifeTest {
     }
 
     @Test
-    public void testKillMultipleCellIfShouldDieinNextGeneration(){
+    public void testKillMultipleCellsIfShouldDieinNextGeneration(){
         gameOfLife.plantSeed(0,0);
         gameOfLife.plantSeed(0,1);
         gameOfLife.plantSeed(0,2);
         gameOfLife.plantSeed(1,1);
         gameOfLife.plantSeed(1,2);
+        gameOfLife.initializeGameOfLifeMapSnapShot();
         assertEquals("111011",gameOfLife.getAllCellStatus());
         assertEquals("111011",gameOfLife.getSnapShotCellStatus());
         if (!gameOfLife.shouldLiveInNextGeneration(0, 1)) {
@@ -308,9 +310,19 @@ public class GameOfLifeTest {
         gameOfLife.plantSeed(0,2);
         gameOfLife.plantSeed(1,1);
         gameOfLife.plantSeed(1,2);
-
+        gameOfLife.initializeGameOfLifeMapSnapShot();
         assertEquals(gameOfLife.getAllCellStatus(),gameOfLife.getSnapShotCellStatus());
 
     }
 
+    @Test
+    public void testTick() {
+        gameOfLife.plantSeed(0,0);
+        gameOfLife.plantSeed(0,1);
+        gameOfLife.plantSeed(0,2);
+        gameOfLife.plantSeed(1,1);
+        gameOfLife.plantSeed(1,2);
+        gameOfLife.tick();
+        assertEquals("101101",gameOfLife.getAllCellStatus());
+    }
 }
