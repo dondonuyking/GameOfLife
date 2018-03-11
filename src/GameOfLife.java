@@ -104,5 +104,25 @@ public class GameOfLife {
         }
         return String.valueOf(gameOfLifeMap[xCoordinate+1][yCoordinate+1]);
     }
+
+    public int getNumberOfLivingNeighbors(int xCoordinate, int yCoordinate) {
+        return
+        integerValueOfCell(getLeftCell(xCoordinate,yCoordinate)) +
+                integerValueOfCell(getRightCell(xCoordinate,yCoordinate)) +
+                        integerValueOfCell(getTopCell(xCoordinate,yCoordinate)) +
+                                integerValueOfCell(getBottomCell(xCoordinate,yCoordinate)) +
+                                        integerValueOfCell(getTopLeftCell(xCoordinate,yCoordinate)) +
+                                                integerValueOfCell(getBottomLeftCell(xCoordinate,yCoordinate)) +
+                                                        integerValueOfCell(getTopRightCell(xCoordinate,yCoordinate)) +
+                                                                integerValueOfCell(getBottomRightCell(xCoordinate,yCoordinate));
+
+    }
+
+    public int integerValueOfCell(String stringValueOfCell){
+        if (stringValueOfCell.equals(" ")) {
+            return 0;
+        };
+        return Integer.parseInt(stringValueOfCell);
+    }
 }
 

@@ -138,4 +138,40 @@ public class GameOfLifeTest {
         assertEquals(" ", gameOfLife.getTopRightCell(0, 0));
         assertEquals(" ", gameOfLife.getBottomRightCell(1, 0));
     }
+    @Test
+    public void testGetNumberOfLivingNeighbors(){
+        assertEquals(0, gameOfLife.getNumberOfLivingNeighbors(0, 0));
+    }
+    @Test
+    public void testGetNumberOfLivingNeighborsGivenOneLivingCell(){
+       gameOfLife.plantSeed(0,0);
+       assertEquals(0, gameOfLife.getNumberOfLivingNeighbors(0, 0));
+       assertEquals(1, gameOfLife.getNumberOfLivingNeighbors(0, 1));
+       assertEquals(1, gameOfLife.getNumberOfLivingNeighbors(1, 1));
+    }
+    @Test
+    public void testGetNumberOfLivingNeighborsGivenThreeLivingCells(){
+        gameOfLife.plantSeed(0,0);
+        gameOfLife.plantSeed(0,1);
+        gameOfLife.plantSeed(1,0);
+        assertEquals(2, gameOfLife.getNumberOfLivingNeighbors(0, 0));
+        assertEquals(2, gameOfLife.getNumberOfLivingNeighbors(0, 1));
+        assertEquals(2, gameOfLife.getNumberOfLivingNeighbors(1, 0));
+        assertEquals(3, gameOfLife.getNumberOfLivingNeighbors(1, 1));
+        assertEquals(1, gameOfLife.getNumberOfLivingNeighbors(1, 2));
+    }
+    @Test
+    public void testGetNumberOfLivingNeighborsGivenFiveLivingCells(){
+        gameOfLife.plantSeed(0,0);
+        gameOfLife.plantSeed(0,1);
+        gameOfLife.plantSeed(1,0);
+        gameOfLife.plantSeed(1,1);
+        gameOfLife.plantSeed(1,2);
+        assertEquals(3, gameOfLife.getNumberOfLivingNeighbors(0, 0));
+        assertEquals(4, gameOfLife.getNumberOfLivingNeighbors(0, 1));
+        assertEquals(3, gameOfLife.getNumberOfLivingNeighbors(0, 2));
+        assertEquals(3, gameOfLife.getNumberOfLivingNeighbors(1, 0));
+        assertEquals(4, gameOfLife.getNumberOfLivingNeighbors(1, 1));
+        assertEquals(2, gameOfLife.getNumberOfLivingNeighbors(1, 2));
+    }
 }
