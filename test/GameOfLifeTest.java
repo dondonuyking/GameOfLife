@@ -325,4 +325,60 @@ public class GameOfLifeTest {
         gameOfLife.tick();
         assertEquals("101101",gameOfLife.getAllCellStatus());
     }
+    @Test
+    public void testTwoTicks() {
+        gameOfLife.plantSeed(0,0);
+        gameOfLife.plantSeed(0,1);
+        gameOfLife.plantSeed(0,2);
+        gameOfLife.plantSeed(1,1);
+        gameOfLife.plantSeed(1,2);
+        gameOfLife.tick();
+        gameOfLife.tick();
+        assertEquals("000000",gameOfLife.getAllCellStatus());
+    }
+    @Test
+    public void testMultipleTicks() {
+        gameOfLife.plantSeed(0,0);
+        gameOfLife.plantSeed(0,1);
+        gameOfLife.plantSeed(1,0);
+        gameOfLife.plantSeed(1,2);
+        gameOfLife.tick();
+        assertEquals("110100",gameOfLife.getAllCellStatus());
+        gameOfLife.tick();
+        assertEquals("110110",gameOfLife.getAllCellStatus());
+        gameOfLife.tick();
+        assertEquals("110110",gameOfLife.getAllCellStatus());
+
+    }
+    @Test
+    public void testZeroLiveCells() {
+        gameOfLife.tick();
+        assertEquals("000000",gameOfLife.getAllCellStatus());
+    }
+    @Test
+    public void testMultipleTicksWith3InitialCells() {
+        gameOfLife.plantSeed(0,0);
+        gameOfLife.plantSeed(0,2);
+        gameOfLife.plantSeed(1,1);
+        gameOfLife.tick();
+        assertEquals("010010",gameOfLife.getAllCellStatus());
+        gameOfLife.tick();
+        assertEquals("000000",gameOfLife.getAllCellStatus());
+        gameOfLife.tick();
+        assertEquals("000000",gameOfLife.getAllCellStatus());
+    }
+    @Test
+    public void testMultipleTicksinThreeByThreeMap() {
+        gameOfLife = new GameOfLife(3)
+        gameOfLife.plantSeed(0,0);
+        gameOfLife.plantSeed(0,2);
+        gameOfLife.plantSeed(1,1);
+        gameOfLife.tick();
+        assertEquals("",gameOfLife.getAllCellStatus());
+        gameOfLife.tick();
+        assertEquals("000000",gameOfLife.getAllCellStatus());
+        gameOfLife.tick();
+        assertEquals("000000",gameOfLife.getAllCellStatus());
+    }
+
 }
