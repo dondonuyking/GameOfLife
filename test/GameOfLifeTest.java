@@ -173,5 +173,15 @@ public class GameOfLifeTest {
         assertEquals(3, gameOfLife.getNumberOfLivingNeighbors(1, 0));
         assertEquals(4, gameOfLife.getNumberOfLivingNeighbors(1, 1));
         assertEquals(2, gameOfLife.getNumberOfLivingNeighbors(1, 2));
+
+    }
+    @Test
+    public void testGetNumberOfDeadNeighbors(){
+        assertEquals(3, gameOfLife.getNumberOfLDeadNeighbors(0, 0));
+        assertEquals(5, gameOfLife.getNumberOfLDeadNeighbors(0, 1));
+        assertEquals(3, gameOfLife.getNumberOfLDeadNeighbors(0, 2));
+        assertEquals(3, gameOfLife.getNumberOfLDeadNeighbors(1, 0));
+        assertEquals(5, gameOfLife.getNumberOfLDeadNeighbors(1, 1));
+        assertEquals(3, gameOfLife.getNumberOfLDeadNeighbors(1, 2));
     }
 }

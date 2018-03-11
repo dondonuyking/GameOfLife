@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 public class GameOfLife {
 
     private static int horizontalBorder;
@@ -107,22 +105,43 @@ public class GameOfLife {
 
     public int getNumberOfLivingNeighbors(int xCoordinate, int yCoordinate) {
         return
-        integerValueOfCell(getLeftCell(xCoordinate,yCoordinate)) +
-                integerValueOfCell(getRightCell(xCoordinate,yCoordinate)) +
-                        integerValueOfCell(getTopCell(xCoordinate,yCoordinate)) +
-                                integerValueOfCell(getBottomCell(xCoordinate,yCoordinate)) +
-                                        integerValueOfCell(getTopLeftCell(xCoordinate,yCoordinate)) +
-                                                integerValueOfCell(getBottomLeftCell(xCoordinate,yCoordinate)) +
-                                                        integerValueOfCell(getTopRightCell(xCoordinate,yCoordinate)) +
-                                                                integerValueOfCell(getBottomRightCell(xCoordinate,yCoordinate));
+        integerValueOfLiveCell(getLeftCell(xCoordinate,yCoordinate)) +
+                integerValueOfLiveCell(getRightCell(xCoordinate,yCoordinate)) +
+                        integerValueOfLiveCell(getTopCell(xCoordinate,yCoordinate)) +
+                                integerValueOfLiveCell(getBottomCell(xCoordinate,yCoordinate)) +
+                                        integerValueOfLiveCell(getTopLeftCell(xCoordinate,yCoordinate)) +
+                                                integerValueOfLiveCell(getBottomLeftCell(xCoordinate,yCoordinate)) +
+                                                        integerValueOfLiveCell(getTopRightCell(xCoordinate,yCoordinate)) +
+                                                                integerValueOfLiveCell(getBottomRightCell(xCoordinate,yCoordinate));
 
     }
 
-    public int integerValueOfCell(String stringValueOfCell){
+    public int integerValueOfLiveCell(String stringValueOfCell){
         if (stringValueOfCell.equals(" ")) {
             return 0;
         };
         return Integer.parseInt(stringValueOfCell);
+    }
+
+    public int getNumberOfLDeadNeighbors(int xCoordinate, int yCoordinate) {
+        return
+                integerValueOfDeadCell(getLeftCell(xCoordinate,yCoordinate)) +
+                        integerValueOfDeadCell(getRightCell(xCoordinate,yCoordinate)) +
+                        integerValueOfDeadCell(getTopCell(xCoordinate,yCoordinate)) +
+                        integerValueOfDeadCell(getBottomCell(xCoordinate,yCoordinate)) +
+                        integerValueOfDeadCell(getTopLeftCell(xCoordinate,yCoordinate)) +
+                        integerValueOfDeadCell(getBottomLeftCell(xCoordinate,yCoordinate)) +
+                        integerValueOfDeadCell(getTopRightCell(xCoordinate,yCoordinate)) +
+                        integerValueOfDeadCell(getBottomRightCell(xCoordinate,yCoordinate));
+
+
+    }
+
+    private int integerValueOfDeadCell(String stringValueOfCell) {
+        if (stringValueOfCell.equals(" ") || stringValueOfCell.equals("1")) {
+            return 0;
+        };
+        return 1;
     }
 }
 
