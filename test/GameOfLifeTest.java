@@ -251,6 +251,7 @@ public class GameOfLifeTest {
         assertEquals(false, gameOfLife.shouldLiveInNextGeneration(1, 1));
         assertEquals(true, gameOfLife.shouldLiveInNextGeneration(1, 2));
     }
+
     @Test
     public void testIfCellShouldLiveInNextGenerationWithFiveLivingCells(){
         gameOfLife.plantSeed(0,0);
@@ -280,5 +281,34 @@ public class GameOfLifeTest {
 
     }
 
+    @Test
+    public void testKillMultipleCellIfShouldDieinNextGeneration(){
+        gameOfLife.plantSeed(0,0);
+        gameOfLife.plantSeed(0,1);
+        gameOfLife.plantSeed(0,2);
+        gameOfLife.plantSeed(1,1);
+        gameOfLife.plantSeed(1,2);
+        assertEquals("111011",gameOfLife.getAllCellStatus());
+        if (!gameOfLife.shouldLiveInNextGeneration(0, 1)) {
+            gameOfLife.killCell(0,1);
+        }
+        assertEquals("101011",gameOfLife.getAllCellStatus());
+        if (!gameOfLife.shouldLiveInNextGeneration(1, 1)) {
+            gameOfLife.killCell(1,1);
+        }
+        assertEquals("101001",gameOfLife.getAllCellStatus());
+
+    }
+    @Test
+    public void testGetSnapShotBeforeNextGeneration(){
+        gameOfLife.plantSeed(0,0);
+        gameOfLife.plantSeed(0,1);
+        gameOfLife.plantSeed(0,2);
+        gameOfLife.plantSeed(1,1);
+        gameOfLife.plantSeed(1,2);
+
+        assertEquals(gameOfLife.getAllCellStatus(),gameOfLife.getSnapShotCellStatus());
+
+    }
 
 }

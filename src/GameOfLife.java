@@ -3,6 +3,8 @@ public class GameOfLife {
     private static int maxRows;
     private static int maxColumns;
     public static char[][] gameOfLifeMap;
+    public static char[][] gameOfLifeMapSnapShot;
+
 
     public GameOfLife(int maxRowAndColums) {
         initializeGameOfLifeMap(maxRowAndColums,maxRowAndColums);
@@ -40,6 +42,16 @@ public class GameOfLife {
         return sb.toString();
     }
 
+    public String getAllCellStatus(char[][] snapShotOfGameOfLifeMap) {
+        StringBuffer sb = new StringBuffer();
+
+        for (int row = 0; row < maxRows; row++)
+        {
+            for (int column = 0; column < maxColumns; column++)
+                sb.append(snapShotOfGameOfLifeMap[row][column]);
+        }
+        return sb.toString();
+    }
     public void plantSeed(int row, int column) {
      gameOfLifeMap[row][column] = '1';
     }
@@ -134,6 +146,14 @@ public class GameOfLife {
 
     public void killCell(int row, int column) {
         gameOfLifeMap[row][column] = '0';
+    }
+
+    public char[][] getMapSnapShot() {
+        return gameOfLifeMapSnapShot = gameOfLifeMap.clone();
+    }
+
+    public String getSnapShotCellStatus() {
+        return getAllCellStatus(getMapSnapShot());
     }
 }
 
