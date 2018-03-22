@@ -381,5 +381,41 @@ public class GameOfLifeTest {
         gameOfLife.tick();
         assertEquals("101000111",gameOfLife.getAllCellStatus());
     }
+    @Test
+    public void getHorizontalNeighbors() {
+        gameOfLife = new GameOfLife(3);
+        gameOfLife.plantSeed(0,0);
+        gameOfLife.plantSeed(0,2);
+        gameOfLife.plantSeed(1,1);
+        gameOfLife.plantSeed(2,1);
+        assertEquals(2,gameOfLife.getNumberOfHorizontalNeighbors(0,1  ));
+        assertEquals(0,gameOfLife.getNumberOfHorizontalNeighbors(0,0  ));
+        assertEquals(1,gameOfLife.getNumberOfHorizontalNeighbors(2,2  ));
 
+    }
+    @Test
+    public void getVerticalNeighbors() {
+        gameOfLife = new GameOfLife(3);
+        gameOfLife.plantSeed(0,0);
+        gameOfLife.plantSeed(0,2);
+        gameOfLife.plantSeed(1,1);
+        gameOfLife.plantSeed(2,2 );
+        assertEquals(1,gameOfLife.getNumberOfVerticalNeighbors(0,1  ));
+        assertEquals(2,gameOfLife.getNumberOfVerticalNeighbors(1,2  ));
+        assertEquals(0,gameOfLife.getNumberOfVerticalNeighbors(2,2  ));
+
+    }
+
+    @Test
+    public void getDiagonalNeighbors() {
+        gameOfLife = new GameOfLife(3);
+        gameOfLife.plantSeed(0,0);
+        gameOfLife.plantSeed(0,2);
+        gameOfLife.plantSeed(1,1);
+        gameOfLife.plantSeed(2,2 );
+        assertEquals(0,gameOfLife.getNumberOfDiagonalNeighbors(0,1  ));
+        assertEquals(0,gameOfLife.getNumberOfDiagonalNeighbors(1,2  ));
+        assertEquals(1,gameOfLife.getNumberOfDiagonalNeighbors(2,2  ));
+
+    }
 }

@@ -2,13 +2,13 @@ import static java.lang.System.arraycopy;
 
 public class GameOfLife {
 
-    private final String DEAD_CELL = "0";
+
     private int maxRows;
     private int maxColumns;
     public char[][] gameOfLifeMap;
     public char[][] gameOfLifeMapSnapShot = null;
     private final String ALIVE_CELL = "1";
-
+    private final String DEAD_CELL = "0";
 
     public GameOfLife(int maxRowAndColums) {
         initializeGameOfLifeMap(maxRowAndColums,maxRowAndColums);
@@ -121,17 +121,23 @@ public class GameOfLife {
         return String.valueOf(gameOfLifeMap[row+1][column+1]);
     }
 
-    public int getNumberOfLivingNeighbors(int row, int column) {
-        return
-        integerValueOfLiveCell(getLeftCell(row,column)) +
-                integerValueOfLiveCell(getRightCell(row,column)) +
-                        integerValueOfLiveCell(getTopCell(row,column)) +
-                                integerValueOfLiveCell(getBottomCell(row,column)) +
-                                        integerValueOfLiveCell(getTopLeftCell(row,column)) +
-                                                integerValueOfLiveCell(getBottomLeftCell(row,column)) +
-                                                        integerValueOfLiveCell(getTopRightCell(row,column)) +
-                                                                integerValueOfLiveCell(getBottomRightCell(row,column));
+    public int getNumberOfHorizontalNeighbors(int row, int column) {
 
+        return integerValueOfLiveCell(getLeftCell(row,column)) +
+                integerValueOfLiveCell(getRightCell(row,column)) ;
+    }
+    public int getNumberOfVerticalNeighbors(int row, int column) {
+        return integerValueOfLiveCell(getTopCell(row,column)) +
+                integerValueOfLiveCell(getBottomCell(row,column)) ;
+    }
+    public int getNumberOfDiagonalNeighbors(int row, int column) {
+        return  integerValueOfLiveCell(getTopLeftCell(row,column)) +
+                integerValueOfLiveCell(getBottomLeftCell(row,column)) +
+                integerValueOfLiveCell(getTopRightCell(row,column)) +
+                integerValueOfLiveCell(getBottomRightCell(row,column));
+    }
+    public int getNumberOfLivingNeighbors(int row, int column) {
+        return getNumberOfHorizontalNeighbors(row,column)  + getNumberOfVerticalNeighbors(row,column) + getNumberOfDiagonalNeighbors(row,column);
     }
 
     public int integerValueOfLiveCell(String stringValueOfCell){
